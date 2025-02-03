@@ -1,5 +1,5 @@
 def main():
-    print("Hello from inventory-management!")
+    print("Hello from inventory-management-service!")
 
 
 if __name__ == "__main__":
