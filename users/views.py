@@ -1,8 +1,17 @@
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
 
 from .models import Users
+
+
+class IndexView(generic.ListView):
+    template_name = "users/index.html"
+    context_object_name = "most_recent"
+
+    def get_queryset(self):
+        return Users.objects.order_by("-id")[:5]
 
 
 def get_users(request):
@@ -47,6 +56,7 @@ def create_user(request, user_id):
     #     return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
 
 
+# TODO: Find some good standards around error handling from models, request.get etc...
 def update_user(request, user_id):
     user = get_object_or_404(Users, pk=user_id)
     updated_first_name = request.GET["first_name"]

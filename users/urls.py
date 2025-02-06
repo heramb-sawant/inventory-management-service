@@ -7,7 +7,7 @@ from . import views
 # Seems like a much simpler way to organize http methods without having to use different urls.
 app_name = "users"
 urlpatterns = [
-    path("", views.get_users, name="index"),
+    path("", views.IndexView.as_view(), name="index"),
     path("<str:user_id>/", views.get_user, name="details"),
     path("create/", views.create_user, name="create"),
     path("update/<str:user_id>/", views.update_user, name="update"),
