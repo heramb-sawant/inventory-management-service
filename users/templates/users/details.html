@@ -1,1 +1,3 @@
-{{user}}
+{% if user %} {{user}} {% else %}
+<p>No users are available.</p>
+{% endif %}

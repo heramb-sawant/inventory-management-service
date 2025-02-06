@@ -12,7 +12,8 @@ def get_users(request):
 
 def get_user(request, user_id):
     user = get_object_or_404(Users, pk=user_id)
-    return render(request, "users/detail.html", {"user": user})
+    context = {"user": user}
+    return render(request, "users/details.html", context)
 
     # try:
     #     user = Users.objects.get(pk=user_id)
@@ -25,5 +26,5 @@ def create_user(request):
     return HttpResponse("TODO:!")
 
 
-def get_user_details(request, user_id):
+def update_user(request, user_id):
     return HttpResponse(f"User details to come! {user_id}")
