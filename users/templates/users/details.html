@@ -1,3 +1,12 @@
-{% if user %} {{user}} {% else %}
-<p>No users are available.</p>
+{% if user %}
+<form action="{% url 'users:update' user.id %}" method="put">
+  {% csrf_token %}
+  <label for="fname">First name:</label><br />
+  <input type="text" name="first_name" value="{{user.first_name}}" /><br />
+  <label for="lname">Last name:</label><br />
+  <input type="text" name="last_name" value="{{user.last_name}}" /><br /><br />
+  <input type="submit" value="Update" />
+</form>
+{% else %}
+<p>NOT_FOUND: User details are not available.</p>
 {% endif %}
