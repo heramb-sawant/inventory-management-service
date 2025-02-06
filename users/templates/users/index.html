@@ -2,6 +2,7 @@
 <ul>
   {% for user in most_recent %}
   <li><a href="/users/{{ user.id }}/">{{ user.first_name }}</a></li>
+  <li><a href="{% url 'polls:details' user.id %}">{{ user.id }}</a></li>
   {% endfor %}
 </ul>
 {% else %}
