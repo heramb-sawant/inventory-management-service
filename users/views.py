@@ -6,7 +6,7 @@ from .models import Users
 
 def get_users(request):
     most_recent = Users.objects.order_by("-id")[:5]
-    context = {"latest_question_list": most_recent}
+    context = {"most_recent": most_recent}
     return render(request, "users/index.html", context)
 
 
