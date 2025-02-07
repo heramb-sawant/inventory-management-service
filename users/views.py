@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
 
 
 def get_users(request):
-    most_recent = Users.objects.order_by("-id")[:5]
+    most_recent = Users.objects.order_by("-first_name")[:5]
     context = {"most_recent": most_recent}
     return render(request, "users/index.html", context)
 
