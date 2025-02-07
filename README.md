@@ -41,6 +41,7 @@ Steps I had to take to get a db running
 - `uv add --dev {package}` to add a dev dependency to the project
 - `uv remove {package}` to remove a package from the project
 - `uv run {package} {directory}` to run commands
+- `ruff check` to run linter
 
 ## Running The Server
 

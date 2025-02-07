@@ -1,7 +1,8 @@
-from django.http import Http404, HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.db.models import QuerySet
 
 from .models import Users
 
@@ -10,17 +11,17 @@ class IndexView(generic.ListView):
     template_name = "users/index.html"
     context_object_name = "most_recent"
 
-    def get_queryset(self):
+    def get_queryset(self) -> QuerySet[Users, Users]:
         return Users.objects.order_by("-id")[:5]
 
 
-def get_users(request):
+def get_users(request: HttpRequest) -> HttpResponse:
     most_recent = Users.objects.order_by("-first_name")[:5]
     context = {"most_recent": most_recent}
     return render(request, "users/index.html", context)
 
 
-def get_user(request, user_id):
+def get_user(request: HttpRequest, user_id: str) -> HttpResponse:
     user = get_object_or_404(Users, pk=user_id)
     context = {"user": user}
     return render(request, "users/details.html", context)
@@ -32,7 +33,7 @@ def get_user(request, user_id):
     # return render(request, "users/detail.html", {"user": user})
 
 
-def create_user(request, user_id):
+def create_user(request: HttpRequest, user_id: str) -> HttpResponse:
     return HttpResponse(f"User details to come! {user_id}")
     # question = get_object_or_404(Question, pk=question_id)
     # try:
@@ -57,7 +58,7 @@ def create_user(request, user_id):
 
 
 # TODO: Find some good standards around error handling from models, request.get etc...
-def update_user(request, user_id):
+def update_user(request: HttpRequest, user_id: str) -> HttpResponse:
     user = get_object_or_404(Users, pk=user_id)
     updated_first_name = request.GET["first_name"]
     updated_last_name = request.GET["last_name"]

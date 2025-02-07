@@ -1,0 +1,10 @@
+[lint]
+preview = true
+
+ignore = []
+select = [
+  "F401", # unused-import
+  "E112", # no-indented-block
+  "E113", # unexpected-indentation
+  "ANN", # flake8-annotations (enforce types)
+]
