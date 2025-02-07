@@ -2,6 +2,9 @@ import uuid
 from django.db import models
 
 
+# TODO: We should probably make this singular. Reasons:
+# - Seems like python automatically makes it plural
+# - When defining objects its nice to User() vs Users()
 class Users(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=30)
