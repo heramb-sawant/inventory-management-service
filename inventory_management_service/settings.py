@@ -80,12 +80,12 @@ WSGI_APPLICATION = "inventory_management_service.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": getenv("ENGINE"),
-        "NAME": getenv("NAME"),
-        "USER": getenv("USER"),
-        "PASSWORD": getenv("PASSWORD"),
-        "HOST": getenv("HOST"),
-        "PORT": getenv("PORT"),
+        "ENGINE": getenv("DATABASES_ENGINE"),
+        "NAME": getenv("DATABASES_NAME"),
+        "USER": getenv("DATABASES_USER"),
+        "PASSWORD": getenv("DATABASES_PASSWORD"),
+        "HOST": getenv("DATABASES_HOST"),
+        "PORT": getenv("DATABASES_PORT"),
     }
 }
 

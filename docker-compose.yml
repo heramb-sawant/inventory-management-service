@@ -3,11 +3,11 @@ services:
     image: postgres:17
     container_name: inventory-management-postgres
     ports:
-      - 5432:5432
+      - 5432:${DATABASES_PORT}
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_DB: admin
-      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: ${DATABASES_USER}
+      POSTGRES_DB: ${DATABASES_NAME}
+      POSTGRES_PASSWORD: ${DATABASES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
 volumes:
