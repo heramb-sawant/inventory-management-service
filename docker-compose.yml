@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:17
+    image: postgres:17-alpine
     container_name: inventory-management-postgres
     ports:
       - 5432:${DATABASES_PORT}
