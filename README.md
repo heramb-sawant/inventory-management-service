@@ -6,28 +6,26 @@ Used to help automate inventory management.
 
 ## Installation & Setup
 
-Steps I had to take to get a db running
+### Get Postgres Running
 
-- Start db
-  - Install postgres through brew
-  - Brew services start postgresql
-- Create db
-  - `createdb inventory_management`- Create a db
-  - `psql inventory_management`- Start a shell
-  - `\c inventory_management` - Connect to a db
-- Create users for db
-  - `\du` display user roles
-  - CREATE USER test WITH PASSWORD 'testpassword';
-  - GRANT ALL PRIVILEGES ON DATABASE inventory_management TO test;
-  - `\l+` for db level PRIVILEGES
-- Other commands I used
-  - `\dt` list tables
-  - `\du` list users
-  - DROP USER testUser;
-- Finished creating/setting up the db by update settings.py with the db information
-- Ran `python manage.py migrate` to make sure everything looked good
+You could always set up Postgres yourself but this repo has a Postgres container setup and ready to use!
 
-  TODO:
+1. [Install docker]([url](https://docs.docker.com/get-started/get-docker/))
+2. run `docker compose up` in your cli
+3. ✨ Done ✨
+
+If you want to access the postgres instance in the docker container:
+1. `docker ps`
+2. copy the Container Id
+3. `docker exec -it {container_id} bash`
+4. `psql -U {username}` The default env username is `admin`
+
+Some helpful Postgres commands
+- `\du` list users
+- `\dt` list tables
+- `\l` list databases
+
+### Start Django App
 
 - Instructions on things to install and what they are used for
 - Use `uv` to manage packages & dependencies
@@ -59,7 +57,7 @@ TODO
 
 - `python manage.py makemigrations {app}` - create migrations for a file
 - `python manage.py sqlmigrate {app} {migration_number}` - view what migration will be run
-- `python manage.py migrate` - apply migration
+- `python manage.py migrate` - apply migration2
 
 TODO:
 
