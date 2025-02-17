@@ -1,5 +1,5 @@
 services:
-  db:
+  postgres:
     image: postgres:17-alpine
     container_name: inventory-management-postgres
     ports:
@@ -10,5 +10,25 @@ services:
       POSTGRES_PASSWORD: ${DATABASES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  django_app:
+    build: .
+    container_name: inventory-management-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    develop:
+      # Create a `watch` configuration to update the app.
+      # Ignore the virtual env (virtual env is platform specific)
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - .venv/
+        - action: rebuild
+          path: ./pyproject.toml
+
 volumes:
   postgres_data:
