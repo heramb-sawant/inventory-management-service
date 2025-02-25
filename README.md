@@ -63,9 +63,9 @@ TODO
 
 ## Migration
 
-- `python manage.py makemigrations {app}` - create migrations for a file
-- `python manage.py sqlmigrate {app} {migration_number}` - view what migration will be run
-- `python manage.py migrate` - apply migration2
+- `uv run manage.py makemigrations {app}` - create migrations for a file
+- `uv run manage.py sqlmigrate {app} {migration_number}` - view what migration will be run
+- `uv run manage.py migrate` - apply migration2
 
 TODO:
 
